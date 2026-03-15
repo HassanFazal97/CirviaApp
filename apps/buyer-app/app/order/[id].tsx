@@ -6,6 +6,7 @@ import {
   TouchableOpacity,
   StyleSheet,
   ActivityIndicator,
+  Alert,
 } from 'react-native';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import { useQuery, useQueryClient } from '@tanstack/react-query';
@@ -63,7 +64,7 @@ export default function OrderTrackingScreen() {
       }
     });
 
-    const offLocation = on('driver:location', (data: unknown) => {
+    const offLocation = on('driver:location_update', (data: unknown) => {
       const update = data as WsDriverLocationUpdate;
       setDriverLocation({ lat: update.lat, lng: update.lng });
     });
