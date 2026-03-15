@@ -9,6 +9,7 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
+    "@cirvia/api-client": "workspace:*",
     "@cirvia/types": "workspace:*",
     "@cirvia/ui": "workspace:*",
     "@cirvia/utils": "workspace:*",

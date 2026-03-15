@@ -10,6 +10,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@cirvia/api-client": "workspace:*",
     "@cirvia/types": "workspace:*",
     "@cirvia/ui": "workspace:*",
     "@cirvia/utils": "workspace:*",

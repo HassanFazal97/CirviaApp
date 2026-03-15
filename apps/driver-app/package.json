@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@expo/vector-icons": "^14.0.0",
+    "@cirvia/api-client": "workspace:*",
     "@cirvia/types": "workspace:*",
     "@cirvia/utils": "workspace:*",
     "@tanstack/react-query": "^5.32.0",
