@@ -18,7 +18,7 @@ import { useCartStore } from '../src/stores/cart.store';
 import { Order } from '@cirvia/types';
 import { formatCents } from '@cirvia/utils';
 
-const DELIVERY_FEE_CENTS = 499;
+const DELIVERY_FEE_CENTS = 599;
 
 export default function CheckoutScreen() {
   const { storeId } = useLocalSearchParams<{ storeId: string }>();
@@ -58,13 +58,13 @@ export default function CheckoutScreen() {
         })),
       };
 
-      const order = await request<Order & { client_secret: string }>('/orders', {
+      const { order, client_secret } = await request<{ order: Order; client_secret: string }>('/orders', {
         method: 'POST',
         body: JSON.stringify(orderPayload),
       });
 
       const { error: initError } = await initPaymentSheet({
-        paymentIntentClientSecret: order.client_secret,
+        paymentIntentClientSecret: client_secret,
         merchantDisplayName: 'Cirvia',
       });
 
