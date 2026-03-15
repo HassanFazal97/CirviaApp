@@ -1,131 +1,73 @@
-import type {
-  Order,
-  OrderItem,
-  OrderStatus,
-  Product,
-  ProductCondition,
-  Payout,
-  Store,
-  PaginatedResponse,
-} from '@cirvia/types';
+import { createCirviaClient } from '@cirvia/api-client';
+import type { OrderDetail, ProductInput, StoreInput } from '@cirvia/api-client';
+import type { Order, OrderStatus, PaginatedResponse, Payout, Product, Store } from '@cirvia/types';
 
-export type OrderDetail = Order & { items?: OrderItem[] };
+export type { OrderDetail, ProductInput, StoreInput };
 
-export type ProductInput = {
-  name: string;
-  description?: string;
-  sku?: string;
-  category: string;
-  unit: string;
-  price_cents: number;
-  stock: number;
-  condition: ProductCondition;
-  is_active: boolean;
-};
-
-export type StoreInput = {
-  name: string;
-  description?: string;
-  phone?: string;
-  email?: string;
-  is_active: boolean;
-};
-
-const API_BASE = process.env.NEXT_PUBLIC_API_URL ?? 'http://localhost:3001';
-
-export async function apiFetch<T>(
-  path: string,
-  token: string,
-  options?: RequestInit,
-): Promise<T> {
-  const res = await fetch(`${API_BASE}/api/v1${path}`, {
-    ...options,
-    headers: {
-      'Content-Type': 'application/json',
-      Authorization: `Bearer ${token}`,
-      ...(options?.headers ?? {}),
+export const apiClient = createCirviaClient({
+  baseUrl: process.env.NEXT_PUBLIC_API_URL ?? 'http://localhost:3001',
+  tokenProvider: {
+    getAccessToken: () =>
+      typeof window !== 'undefined' ? localStorage.getItem('access_token') : null,
+    getRefreshToken: () =>
+      typeof window !== 'undefined' ? localStorage.getItem('refresh_token') : null,
+    onTokenRefreshed: (tokens) => {
+      localStorage.setItem('access_token', tokens.access_token);
+      localStorage.setItem('refresh_token', tokens.refresh_token);
     },
-  });
-  if (!res.ok) throw new Error(`API error: ${res.status}`);
-  return res.json() as Promise<T>;
-}
+    onAuthExpired: () => {
+      localStorage.removeItem('access_token');
+      localStorage.removeItem('refresh_token');
+      window.location.href = '/login';
+    },
+  },
+});
 
-export function getOrders(
+// ─── Named helpers kept for call-site compatibility ───────────────────────────
+
+export const getOrders = (
   storeId: string,
-  token: string,
   page = 1,
-): Promise<PaginatedResponse<Order>> {
-  return apiFetch(`/orders?store_id=${storeId}&page=${page}`, token);
-}
+): Promise<PaginatedResponse<Order>> =>
+  apiClient.orders.list({ store_id: storeId, page });
 
-export function getOrder(id: string, token: string): Promise<OrderDetail> {
-  return apiFetch(`/orders/${id}`, token);
-}
+export const getOrder = (orderId: string): Promise<OrderDetail> =>
+  apiClient.orders.get(orderId);
 
-export function updateOrderStatus(
-  id: string,
+export const updateOrderStatus = (
+  orderId: string,
   status: OrderStatus,
-  token: string,
-): Promise<Order> {
-  return apiFetch(`/orders/${id}/status`, token, {
-    method: 'PATCH',
-    body: JSON.stringify({ status }),
-  });
-}
+): Promise<Order> => apiClient.orders.updateStatus(orderId, status);
 
-export function getProducts(
+export const getProducts = (
   storeId: string,
-  token: string,
   page = 1,
-): Promise<PaginatedResponse<Product>> {
-  return apiFetch(`/stores/${storeId}/products?page=${page}`, token);
-}
+): Promise<PaginatedResponse<Product>> =>
+  apiClient.products.listByStore(storeId, { page });
 
-export function getProduct(id: string, token: string): Promise<Product> {
-  return apiFetch(`/products/${id}`, token);
-}
+export const getProduct = (productId: string): Promise<Product> =>
+  apiClient.products.get(productId);
 
-export function createProduct(
+export const createProduct = (
   storeId: string,
   data: ProductInput,
-  token: string,
-): Promise<Product> {
-  return apiFetch(`/stores/${storeId}/products`, token, {
-    method: 'POST',
-    body: JSON.stringify(data),
-  });
-}
+): Promise<Product> => apiClient.products.create(storeId, data);
 
-export function updateProduct(
-  id: string,
+export const updateProduct = (
+  productId: string,
   data: Partial<ProductInput>,
-  token: string,
-): Promise<Product> {
-  return apiFetch(`/products/${id}`, token, {
-    method: 'PATCH',
-    body: JSON.stringify(data),
-  });
-}
+): Promise<Product> => apiClient.products.update(productId, data);
 
-export function getPayouts(
+export const getPayouts = (
   storeId: string,
-  token: string,
   page = 1,
-): Promise<PaginatedResponse<Payout>> {
-  return apiFetch(`/stores/${storeId}/payouts?page=${page}`, token);
-}
+): Promise<PaginatedResponse<Payout>> =>
+  apiClient.payouts.listByStore(storeId, { page });
 
-export function getStore(storeId: string, token: string): Promise<Store> {
-  return apiFetch(`/stores/${storeId}`, token);
-}
+export const getStore = (storeId: string): Promise<Store> =>
+  apiClient.stores.get(storeId);
 
-export function updateStore(
+export const updateStore = (
   storeId: string,
   data: StoreInput,
-  token: string,
-): Promise<Store> {
-  return apiFetch(`/stores/${storeId}`, token, {
-    method: 'PATCH',
-    body: JSON.stringify(data),
-  });
-}
+): Promise<Store> => apiClient.stores.update(storeId, data);
