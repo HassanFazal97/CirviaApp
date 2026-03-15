@@ -13,7 +13,8 @@
   },
   "pnpm": {
     "overrides": {
-      "ioredis": "5.10.0"
+      "ioredis": "5.10.0",
+      "@expo/metro-runtime": "6.1.2"
     }
   },
   "devDependencies": {
