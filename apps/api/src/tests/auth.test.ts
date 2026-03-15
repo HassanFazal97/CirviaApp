@@ -1,5 +1,32 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
-import { buildApp } from '../server';
+import { buildTestApp } from './helpers/buildTestApp';
+
+vi.mock('../config', () => ({
+  config: {
+    NODE_ENV: 'test',
+    PORT: 3001,
+    DATABASE_URL: 'postgres://localhost/test',
+    REDIS_URL: 'redis://localhost',
+    SUPABASE_URL: 'https://test.supabase.co',
+    SUPABASE_ANON_KEY: 'test-anon-key',
+    SUPABASE_SERVICE_ROLE_KEY: 'test-service-role-key',
+    JWT_SECRET: 'test-jwt-secret-that-is-at-least-32-chars!!',
+    JWT_REFRESH_SECRET: 'test-refresh-secret-that-is-at-least-32chars',
+    JWT_EXPIRES_IN: '15m',
+    JWT_REFRESH_EXPIRES_IN: '30d',
+    STRIPE_SECRET_KEY: 'sk_test_dummy',
+    STRIPE_WEBHOOK_SECRET: 'whsec_test',
+    ALGOLIA_APP_ID: 'test-app-id',
+    ALGOLIA_API_KEY: 'test-api-key',
+    ALGOLIA_SEARCH_KEY: 'test-search-key',
+    AWS_S3_BUCKET: 'test-bucket',
+    AWS_REGION: 'us-east-1',
+    RESEND_API_KEY: 're_test_key',
+    CORS_ORIGIN: '*',
+  },
+}));
+
+vi.mock('@fastify/rate-limit', () => ({ default: async () => {} }));
 
 // Mock external dependencies so tests run without real services
 vi.mock('../db', () => ({
@@ -69,10 +96,10 @@ vi.mock('../services/algolia.service', () => ({
 }));
 
 describe('Auth endpoints', () => {
-  let app: Awaited<ReturnType<typeof buildApp>>;
+  let app: Awaited<ReturnType<typeof buildTestApp>>;
 
   beforeEach(async () => {
-    app = await buildApp();
+    app = await buildTestApp();
     await app.ready();
   });
 
