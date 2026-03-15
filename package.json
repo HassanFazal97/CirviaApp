@@ -11,6 +11,11 @@
     "test": "turbo test",
     "format": "prettier --write \"**/*.{ts,tsx,md}\""
   },
+  "pnpm": {
+    "overrides": {
+      "ioredis": "5.10.0"
+    }
+  },
   "devDependencies": {
     "turbo": "^2.0.0",
     "prettier": "^3.0.0",
