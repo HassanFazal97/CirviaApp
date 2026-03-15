@@ -1,7 +1,7 @@
 CREATE TYPE review_target_type AS ENUM ('store', 'driver');
 
 CREATE TABLE reviews (
-  id            UUID                PRIMARY KEY DEFAULT uuid_generate_v4(),
+  id            UUID                PRIMARY KEY DEFAULT gen_random_uuid(),
   order_id      UUID                NOT NULL REFERENCES orders(id),
   reviewer_id   UUID                NOT NULL REFERENCES users(id),
   target_type   review_target_type  NOT NULL,

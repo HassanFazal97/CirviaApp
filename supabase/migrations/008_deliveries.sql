@@ -10,7 +10,7 @@ CREATE TYPE delivery_status AS ENUM (
 );
 
 CREATE TABLE deliveries (
-  id                UUID            PRIMARY KEY DEFAULT uuid_generate_v4(),
+  id                UUID            PRIMARY KEY DEFAULT gen_random_uuid(),
   order_id          UUID            NOT NULL UNIQUE REFERENCES orders(id),
   driver_id         UUID            REFERENCES drivers(id),
   status            delivery_status NOT NULL DEFAULT 'pending',

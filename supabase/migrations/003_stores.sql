@@ -1,7 +1,7 @@
 CREATE TYPE store_type AS ENUM ('retail', 'individual');
 
 CREATE TABLE stores (
-  id                UUID          PRIMARY KEY DEFAULT uuid_generate_v4(),
+  id                UUID          PRIMARY KEY DEFAULT gen_random_uuid(),
   owner_id          UUID          NOT NULL REFERENCES users(id),
   type              store_type    NOT NULL DEFAULT 'retail',
   name              TEXT          NOT NULL,

@@ -2,7 +2,7 @@ CREATE TYPE payout_status AS ENUM ('pending', 'processing', 'paid', 'failed');
 CREATE TYPE payout_recipient_type AS ENUM ('store', 'driver');
 
 CREATE TABLE payouts (
-  id                  UUID                    PRIMARY KEY DEFAULT uuid_generate_v4(),
+  id                  UUID                    PRIMARY KEY DEFAULT gen_random_uuid(),
   recipient_type      payout_recipient_type   NOT NULL,
   recipient_id        UUID                    NOT NULL,
   order_id            UUID                    NOT NULL REFERENCES orders(id),
