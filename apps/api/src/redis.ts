@@ -6,6 +6,12 @@ export const redis = new Redis(config.REDIS_URL, {
   lazyConnect: true,
 });
 
+/** Dedicated connection for BullMQ — requires maxRetriesPerRequest: null */
+export const bullmqRedis = new Redis(config.REDIS_URL, {
+  maxRetriesPerRequest: null,
+  enableReadyCheck: false,
+});
+
 redis.on('error', (err) => {
   console.error('Redis error:', err);
 });

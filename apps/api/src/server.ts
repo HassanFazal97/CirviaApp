@@ -1,4 +1,4 @@
-import { createServer } from 'http';
+import { createServer, Server as HttpServer } from 'http';
 import Fastify from 'fastify';
 import cors from '@fastify/cors';
 import rateLimit from '@fastify/rate-limit';
@@ -74,7 +74,7 @@ async function start() {
     const app = await buildApp();
 
     // Create raw HTTP server so Socket.io can share it
-    const httpServer = createServer(app.server);
+    const httpServer = createServer(app.server as unknown as HttpServer);
     initSocketServer(httpServer);
 
     await app.ready();

@@ -1,7 +1,7 @@
 CREATE TYPE product_condition AS ENUM ('new', 'used', 'excess');
 
 CREATE TABLE products (
-  id                UUID              PRIMARY KEY DEFAULT uuid_generate_v4(),
+  id                UUID              PRIMARY KEY DEFAULT gen_random_uuid(),
   store_id          UUID              NOT NULL REFERENCES stores(id),
   name              TEXT              NOT NULL,
   description       TEXT,

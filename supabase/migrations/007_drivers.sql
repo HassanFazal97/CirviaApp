@@ -2,7 +2,7 @@ CREATE TYPE vehicle_type AS ENUM ('bicycle', 'motorcycle', 'car', 'van', 'truck'
 CREATE TYPE driver_status AS ENUM ('offline', 'online', 'on_delivery');
 
 CREATE TABLE drivers (
-  id                UUID          PRIMARY KEY DEFAULT uuid_generate_v4(),
+  id                UUID          PRIMARY KEY DEFAULT gen_random_uuid(),
   user_id           UUID          NOT NULL UNIQUE REFERENCES users(id),
   vehicle_type      vehicle_type  NOT NULL,
   vehicle_plate     TEXT,

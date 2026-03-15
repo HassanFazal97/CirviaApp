@@ -1,5 +1,5 @@
 import { Queue, Worker } from 'bullmq';
-import { redis } from '../redis';
+import { bullmqRedis as redis } from '../redis';
 import { productRepository } from '../repositories/product.repository';
 import { orderRepository } from '../repositories/order.repository';
 import { stripeService } from '../services/stripe.service';
