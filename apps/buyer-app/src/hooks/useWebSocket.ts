@@ -25,11 +25,14 @@ export function useWebSocket() {
   }, [accessToken]);
 
   function joinRoom(room: string) {
-    socketRef.current?.emit('join', room);
+    // room is expected to be in the form "order:{id}"
+    const orderId = room.startsWith('order:') ? room.slice('order:'.length) : room;
+    socketRef.current?.emit('order:subscribe', orderId);
   }
 
   function leaveRoom(room: string) {
-    socketRef.current?.emit('leave', room);
+    const orderId = room.startsWith('order:') ? room.slice('order:'.length) : room;
+    socketRef.current?.emit('order:unsubscribe', orderId);
   }
 
   function on(event: string, handler: (...args: unknown[]) => void) {
