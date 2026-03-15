@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { Order, OrderStatus } from '@cirvia/types';
 import { formatCents } from '@cirvia/utils';
 import { apiFetch } from '@/lib/api';
-import StatusBadge from '@/components/StatusBadge';
+import { StatusBadge } from '@cirvia/ui';
 
 const STATUS_OPTIONS: { label: string; value: string }[] = [
   { label: 'All', value: '' },

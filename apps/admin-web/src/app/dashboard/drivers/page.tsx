@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react';
 import { Driver } from '@cirvia/types';
 import { apiFetch } from '@/lib/api';
-import StatusBadge from '@/components/StatusBadge';
+import { StatusBadge } from '@cirvia/ui';
 
 export default function DriversPage() {
   const [drivers, setDrivers] = useState<Driver[]>([]);

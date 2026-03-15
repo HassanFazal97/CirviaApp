@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import type { Product } from '@cirvia/types';
 import { formatCents } from '@cirvia/utils';
-import { StatusBadge } from '@/components/ui/StatusBadge';
+import { StatusBadge } from '@cirvia/ui';
 
 interface ProductsTableProps {
   products: Product[];

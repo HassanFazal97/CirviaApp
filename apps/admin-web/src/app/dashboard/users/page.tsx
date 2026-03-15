@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react';
 import { User } from '@cirvia/types';
 import { apiFetch } from '@/lib/api';
-import StatusBadge from '@/components/StatusBadge';
+import { StatusBadge } from '@cirvia/ui';
 
 export default function UsersPage() {
   const [users, setUsers] = useState<User[]>([]);

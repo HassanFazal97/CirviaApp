@@ -1,0 +1,7 @@
+{
+  "extends": "@cirvia/config/typescript",
+  "compilerOptions": {
+    "jsx": "react-jsx"
+  },
+  "include": ["src"]
+}

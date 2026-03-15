@@ -3,6 +3,8 @@ const colorClasses = {
   green: { bg: 'bg-green-50', text: 'text-green-600' },
   purple: { bg: 'bg-purple-50', text: 'text-purple-600' },
   yellow: { bg: 'bg-yellow-50', text: 'text-yellow-600' },
+  emerald: { bg: 'bg-emerald-50', text: 'text-emerald-600' },
+  gray: { bg: 'bg-gray-50', text: 'text-gray-700' },
 } as const;
 
 interface StatCardProps {

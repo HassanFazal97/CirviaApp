@@ -5,7 +5,7 @@ import { useQuery } from '@tanstack/react-query';
 import { formatCents } from '@cirvia/utils';
 import { useAuth } from '@/hooks/useAuth';
 import { getOrders, getProducts } from '@/lib/api';
-import { StatCard } from '@/components/ui/StatCard';
+import { StatCard } from '@cirvia/ui';
 import { OrdersTable } from '@/components/orders/OrdersTable';
 import { ProductsTable } from '@/components/products/ProductsTable';
 
