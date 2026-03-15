@@ -21,6 +21,7 @@ import productsRoutes from './routes/products.route';
 import ordersRoutes from './routes/orders.route';
 import driversRoutes from './routes/drivers.route';
 import reviewsRoutes from './routes/reviews.route';
+import adminRoutes from './routes/admin.route';
 
 const fastify = Fastify({
   logger: {
@@ -59,6 +60,8 @@ async function buildApp() {
     },
     { prefix: '/api/v1' }
   );
+
+  fastify.register(adminRoutes, { prefix: '/api/v1' });
 
   // Health check
   fastify.get('/health', async () => ({ status: 'ok', ts: new Date().toISOString() }));
