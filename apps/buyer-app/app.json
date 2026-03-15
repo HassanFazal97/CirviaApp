@@ -1,0 +1,38 @@
+{
+  "expo": {
+    "name": "Cirvia Buyer",
+    "slug": "cirvia-buyer-app",
+    "scheme": "cirvia-buyer",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "userInterfaceStyle": "light",
+    "assetBundlePatterns": ["**/*"],
+    "ios": {
+      "supportsTablet": false,
+      "bundleIdentifier": "com.cirvia.buyer",
+      "infoPlist": {
+        "NSLocationWhenInUseUsageDescription": "Cirvia needs your location to show nearby stores."
+      }
+    },
+    "android": {
+      "adaptiveIcon": {
+        "backgroundColor": "#2563EB"
+      },
+      "package": "com.cirvia.buyer",
+      "permissions": ["ACCESS_FINE_LOCATION", "ACCESS_COARSE_LOCATION"]
+    },
+    "plugins": [
+      "expo-router",
+      "expo-secure-store",
+      [
+        "expo-location",
+        {
+          "locationWhenInUsePermission": "Cirvia needs your location to show nearby stores."
+        }
+      ]
+    ],
+    "experiments": {
+      "typedRoutes": true
+    }
+  }
+}
