@@ -4,7 +4,7 @@ import { useParams } from 'next/navigation';
 import { useQuery } from '@tanstack/react-query';
 import { useAuth } from '@/hooks/useAuth';
 import { getOrder } from '@/lib/api';
-import { StatusBadge } from '@/components/ui/StatusBadge';
+import { StatusBadge } from '@cirvia/ui';
 import { OrderStatusActions } from '@/components/orders/OrderStatusActions';
 import { formatCents } from '@cirvia/utils';
 

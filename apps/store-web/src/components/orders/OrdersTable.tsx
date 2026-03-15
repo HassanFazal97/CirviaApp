@@ -3,7 +3,7 @@
 import { useRouter } from 'next/navigation';
 import type { Order } from '@cirvia/types';
 import { formatCents } from '@cirvia/utils';
-import { StatusBadge } from '@/components/ui/StatusBadge';
+import { StatusBadge } from '@cirvia/ui';
 
 interface OrdersTableProps {
   orders: Order[];

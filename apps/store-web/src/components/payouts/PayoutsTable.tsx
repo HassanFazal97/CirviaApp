@@ -1,6 +1,6 @@
 import type { Payout } from '@cirvia/types';
 import { formatCents } from '@cirvia/utils';
-import { StatusBadge } from '@/components/ui/StatusBadge';
+import { StatusBadge } from '@cirvia/ui';
 
 interface PayoutsTableProps {
   payouts: Payout[];

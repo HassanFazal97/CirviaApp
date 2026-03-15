@@ -5,8 +5,7 @@ import Link from 'next/link';
 import { Order, User, Store, Driver } from '@cirvia/types';
 import { formatCents } from '@cirvia/utils';
 import { apiFetch } from '@/lib/api';
-import StatCard from '@/components/StatCard';
-import StatusBadge from '@/components/StatusBadge';
+import { StatCard, StatusBadge } from '@cirvia/ui';
 
 interface AdminUsersRes { data: User[]; total: number }
 interface AdminStoresRes { data: Store[]; total: number }
@@ -57,12 +56,12 @@ export default function DashboardPage() {
       <h1 className="text-2xl font-bold mb-6">Overview</h1>
 
       <div className="grid grid-cols-2 md:grid-cols-3 gap-4 mb-8">
-        <StatCard label="Total Users" value={users.length || '—'} colorClass="text-blue-600" />
-        <StatCard label="Active Stores" value={activeStores.length} colorClass="text-green-600" />
-        <StatCard label="Orders Today" value={ordersToday.length} colorClass="text-purple-600" />
-        <StatCard label="Online Drivers" value={onlineDrivers.length} colorClass="text-yellow-600" />
-        <StatCard label="Platform Revenue" value={formatCents(platformRevenue)} colorClass="text-emerald-600" />
-        <StatCard label="Total Orders" value={orders.length} colorClass="text-gray-700" />
+        <StatCard label="Total Users" value={users.length || '—'} color="blue" />
+        <StatCard label="Active Stores" value={activeStores.length} color="green" />
+        <StatCard label="Orders Today" value={ordersToday.length} color="purple" />
+        <StatCard label="Online Drivers" value={onlineDrivers.length} color="yellow" />
+        <StatCard label="Platform Revenue" value={formatCents(platformRevenue)} color="emerald" />
+        <StatCard label="Total Orders" value={orders.length} color="gray" />
       </div>
 
       <section>

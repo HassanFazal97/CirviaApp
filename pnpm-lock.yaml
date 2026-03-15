@@ -26,6 +26,9 @@ importers:
       '@cirvia/types':
         specifier: workspace:*
         version: link:../../packages/types
+      '@cirvia/ui':
+        specifier: workspace:*
+        version: link:../../packages/ui
       '@cirvia/utils':
         specifier: workspace:*
         version: link:../../packages/utils
@@ -303,6 +306,9 @@ importers:
       '@cirvia/types':
         specifier: workspace:*
         version: link:../../packages/types
+      '@cirvia/ui':
+        specifier: workspace:*
+        version: link:../../packages/ui
       '@cirvia/utils':
         specifier: workspace:*
         version: link:../../packages/utils
@@ -367,6 +373,19 @@ importers:
 
   packages/types:
     devDependencies:
+      typescript:
+        specifier: ^5.4.0
+        version: 5.9.3
+
+  packages/ui:
+    dependencies:
+      react:
+        specifier: ^18.0.0
+        version: 18.3.1
+    devDependencies:
+      '@types/react':
+        specifier: ^18.3.0
+        version: 18.3.28
       typescript:
         specifier: ^5.4.0
         version: 5.9.3

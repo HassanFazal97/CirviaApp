@@ -5,8 +5,8 @@ import { useQuery } from '@tanstack/react-query';
 import { useAuth } from '@/hooks/useAuth';
 import { getPayouts } from '@/lib/api';
 import { PayoutsTable } from '@/components/payouts/PayoutsTable';
-import { Pagination } from '@/components/ui/Pagination';
-import { StatCard } from '@/components/ui/StatCard';
+import { Pagination } from '@cirvia/ui';
+import { StatCard } from '@cirvia/ui';
 import { formatCents } from '@cirvia/utils';
 
 export default function PayoutsPage() {

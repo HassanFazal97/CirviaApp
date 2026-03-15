@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import { Payout } from '@cirvia/types';
 import { formatCents } from '@cirvia/utils';
 import { apiFetch } from '@/lib/api';
-import StatusBadge from '@/components/StatusBadge';
+import { StatusBadge } from '@cirvia/ui';
 
 export default function PayoutsPage() {
   const [payouts, setPayouts] = useState<Payout[]>([]);

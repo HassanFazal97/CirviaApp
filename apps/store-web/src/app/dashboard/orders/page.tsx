@@ -5,7 +5,7 @@ import { useQuery } from '@tanstack/react-query';
 import { useAuth } from '@/hooks/useAuth';
 import { getOrders } from '@/lib/api';
 import { OrdersTable } from '@/components/orders/OrdersTable';
-import { Pagination } from '@/components/ui/Pagination';
+import { Pagination } from '@cirvia/ui';
 import type { OrderStatus } from '@cirvia/types';
 
 const STATUS_FILTERS: { label: string; value: string }[] = [

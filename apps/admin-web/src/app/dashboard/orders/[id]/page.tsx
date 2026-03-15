@@ -6,7 +6,7 @@ import Link from 'next/link';
 import { Order, OrderItem } from '@cirvia/types';
 import { formatCents, calculatePayoutSplits } from '@cirvia/utils';
 import { apiFetch } from '@/lib/api';
-import StatusBadge from '@/components/StatusBadge';
+import { StatusBadge } from '@cirvia/ui';
 
 export default function OrderDetailPage() {
   const { id } = useParams<{ id: string }>();
