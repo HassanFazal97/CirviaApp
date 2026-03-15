@@ -1,0 +1,65 @@
+{
+  "expo": {
+    "name": "Cirvia Driver",
+    "slug": "cirvia-driver-app",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "light",
+    "splash": {
+      "image": "./assets/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#1a1a2e"
+    },
+    "assetBundlePatterns": ["**/*"],
+    "ios": {
+      "supportsTablet": false,
+      "bundleIdentifier": "com.cirvia.driverapp",
+      "infoPlist": {
+        "NSLocationWhenInUseUsageDescription": "Cirvia needs your location to find nearby deliveries and track active deliveries.",
+        "NSLocationAlwaysAndWhenInUseUsageDescription": "Cirvia needs your location to track active deliveries in the background.",
+        "NSCameraUsageDescription": "Cirvia needs camera access to capture proof of delivery photos."
+      }
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#1a1a2e"
+      },
+      "package": "com.cirvia.driverapp",
+      "permissions": [
+        "ACCESS_FINE_LOCATION",
+        "ACCESS_COARSE_LOCATION",
+        "CAMERA"
+      ]
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    },
+    "plugins": [
+      "expo-router",
+      [
+        "expo-location",
+        {
+          "locationAlwaysAndWhenInUsePermission": "Cirvia needs your location for delivery tracking."
+        }
+      ],
+      [
+        "expo-camera",
+        {
+          "cameraPermission": "Cirvia needs camera access for proof of delivery."
+        }
+      ],
+      "expo-secure-store"
+    ],
+    "scheme": "cirvia-driver",
+    "extra": {
+      "router": {
+        "origin": false
+      },
+      "eas": {
+        "projectId": "cirvia-driver-app"
+      }
+    }
+  }
+}
